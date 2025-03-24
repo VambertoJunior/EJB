@@ -11,10 +11,14 @@ import java.util.List;
 @Stateless
 public class MensagemDAO {
 
-    @PersistenceContext(unitName="bd2")
+    @PersistenceContext(unitName = "bd2")
     private EntityManager em2;
 
-    public void inserir(Mensagem novaMensagem){
+    public void inserir(Mensagem novaMensagem) {
+        String mensagemTexto = novaMensagem.getMensagem().toLowerCase();
+        if (mensagemTexto.contains("filh putz") || mensagemTexto.contains("merda")) {
+            throw new RuntimeException("Mensagem palavrões coisa feio e não pode isso!!");
+        }
         em2.persist(novaMensagem);
     }
 
